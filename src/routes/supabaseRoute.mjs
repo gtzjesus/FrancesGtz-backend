@@ -12,7 +12,7 @@ router.get('/api/houses', async (req, res) => {
     const houses = await getHouses();
     res.json(houses);
   } catch (error) {
-    console.error('Error fetching houses', error);
+    console.error('Error fetching houses:', error);
   }
 
   // Send error back to client
