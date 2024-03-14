@@ -15,6 +15,14 @@ app.use(
   })
 );
 
+// Handle preflight requests
+app.options('/api/sendEmail', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'GET');
+  res.set('Access-Control-Allow-Headers', 'Content-Type');
+  res.status(200).end();
+});
+
 // Call supabase route
 app.use('/', supabaseRoute);
 
