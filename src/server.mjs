@@ -10,18 +10,10 @@ const PORT = process.env.PORT || 3001;
 app.use(
   cors({
     origin: '*',
-    methods: ['GET'], // Only allow GET requests
+    methods: ['GET'], // Allow only GET requests
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
-
-// Handle preflight requests
-app.options('/api/sendEmail', (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Methods', 'GET');
-  res.set('Access-Control-Allow-Headers', 'Content-Type');
-  res.status(200).end();
-});
 
 // Call supabase route
 app.use('/', supabaseRoute);
