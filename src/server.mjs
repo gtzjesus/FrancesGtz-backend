@@ -7,8 +7,18 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Update cors configuration to allow requests from URLs
-// Enable CORS for all origins
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+    methods: ['GET'], // Allow only GET requests
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
+
+// Cors annoying policy requests
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+});
 
 // Call supabase route
 app.use('/', supabaseRoute);
