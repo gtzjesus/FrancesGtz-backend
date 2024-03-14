@@ -9,10 +9,18 @@ const app = express();
 app.use(
   cors({
     origin: '*',
-    methods: ['GET'], // Allow only GET requests
+    methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
+
+// Handle preflight requests
+app.options('/api/sendEmail', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'GET');
+  res.set('Access-Control-Allow-Headers', 'Content-Type');
+  res.status(200).end();
+});
 
 // Use Supabase routes
 app.use('/', supabaseRoute);
