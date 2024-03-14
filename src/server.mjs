@@ -17,7 +17,8 @@ app.use(
 
 // Cors annoying policy requests
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header({ 'Access-Control-Allow-Origin': '*' });
+  next();
 });
 
 // Call supabase route
