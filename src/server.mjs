@@ -6,7 +6,7 @@ import supabaseRoute from './routes/supabaseRoute.mjs'; // Import your Supabase 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Update cors configuration to allow requests from URLs
+// Update CORS configuration to allow requests from your frontend URL
 app.use(
   cors({
     origin: '*',
@@ -15,16 +15,15 @@ app.use(
   })
 );
 
-// Call supabase route
+// Use Supabase routes
 app.use('/', supabaseRoute);
 
-// Middleware to handle error handling
+// Error Handling Middleware
 app.use((err, req, res, next) => {
-  res.status(500).send('Something broke');
+  res.status(500).send('Something broke!');
 });
 
-// Listen to port
-app.listen(PORT, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log(
     'Express server listening on port %d in %s mode',
     this.address().port,
