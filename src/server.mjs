@@ -1,19 +1,9 @@
 import express from 'express';
-import cors from 'cors';
 
 import supabaseRoute from './routes/supabaseRoute.mjs'; // Import your Supabase routes
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-// Update CORS configuration to allow requests from your frontend URL
-app.use(
-  cors({
-    origin: '*',
-    methods: ['GET'], // Allow only GET requests
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
 
 // Use Supabase routes
 app.use('/', supabaseRoute);
